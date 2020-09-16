@@ -7,6 +7,7 @@ import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.TableApiVal;
 import com.zhexiao.convert.entity.postman.Item;
 import com.zhexiao.convert.entity.postman.Postman;
+import com.zhexiao.convert.entity.vo.UploaderFileVO;
 import com.zhexiao.convert.service.ConvertService;
 import com.zhexiao.convert.utils.json.JsonUtils;
 import com.zhexiao.convert.utils.word.ApiWord;
@@ -14,9 +15,11 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -28,6 +31,15 @@ import java.util.List;
 public class ConvertServiceImpl implements ConvertService {
 
     private static final Logger logger = LoggerFactory.getLogger(ConvertServiceImpl.class);
+
+    @Value("${app.fileVisitHost}")
+    private String fileVisitHost;
+
+    @Value("${app.fileDest}")
+    private String fileDest;
+
+    @Value("${app.filePathRoute}")
+    private String filePathRoute;
 
     @Autowired
     JsonUtils jsonUtils;
@@ -43,10 +55,15 @@ public class ConvertServiceImpl implements ConvertService {
         return Result.success(postman);
     }
 
+    /**
+     * 生成word数据
+     * @param file
+     * @return
+     * @throws Exception
+     */
     @Override
-    public Result<String> writeWord(MultipartFile file) throws Exception {
+    public Result<UploaderFileVO> writeWord(MultipartFile file) throws Exception {
         Postman postman = getData(file);
-        logger.info(postman.toString());
 
         //生成word
         ApiWord apiWord = new ApiWord();
@@ -59,7 +76,7 @@ public class ConvertServiceImpl implements ConvertService {
         //表格
         List<Item> items = postman.getItem();
         for (Item item : items) {
-            logger.info(item.toString());
+            logger.info(item.getName());
             TableApiVal tableApiVal = new TableApiVal()
                     .setInterfaceName(item.getName())
                     .setInterfaceUrl(item.getRequest().getUrl().getRaw())
@@ -73,7 +90,7 @@ public class ConvertServiceImpl implements ConvertService {
                     .setCallSample(item.getRequest().getUrl().getRaw())
                     .setExceptionScene("");
 
-            logger.info(item.getName());
+            logger.info(item.toString());
             //根据值创建
             apiWord.createApiTable(tableApiVal);
             apiWord.createParagraph("");
@@ -81,9 +98,20 @@ public class ConvertServiceImpl implements ConvertService {
         }
         logger.info("---------------word表格创建完毕--------------");
 
-        apiWord.export("./words/" + System.currentTimeMillis() + ".docx");
+        //保存文件
+        String filename = postman.getInfo().getName() + "_" + System.currentTimeMillis() + ".docx";
+        String visitPath = fileDest + "/" + filename;
+        apiWord.export(visitPath);
 
-        return Result.success("ok");
+        //返回数据
+        UploaderFileVO fileVO = new UploaderFileVO()
+                .setFullpath(visitPath)
+                .setFilename(filename)
+                .setDest(fileDest)
+                .setOriginFilename(file.getOriginalFilename())
+                .setCreateDatetime(LocalDateTime.now())
+                .setVisitPath(fileVisitHost + "" + filePathRoute + "" +filename);
+        return Result.success(fileVO);
     }
 
     /**

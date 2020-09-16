@@ -2,6 +2,7 @@ package com.zhexiao.convert.service;
 
 import com.zhexiao.convert.base.Result;
 import com.zhexiao.convert.entity.postman.Postman;
+import com.zhexiao.convert.entity.vo.UploaderFileVO;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -12,5 +13,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ConvertService {
     Result<Postman> upload(MultipartFile file);
 
-    Result<String> writeWord(MultipartFile file) throws Exception;
+    Result<UploaderFileVO> writeWord(MultipartFile file) throws Exception;
 }

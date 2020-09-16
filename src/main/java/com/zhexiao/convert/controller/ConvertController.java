@@ -38,7 +38,7 @@ public class ConvertController {
     }
 
     @RequestMapping(value = "/convert", method = RequestMethod.POST)
-    public Result<String> writeWord(MultipartFile file){
+    public Result writeWord(MultipartFile file){
         try {
             return convertService.writeWord(file);
         } catch (Exception e) {
