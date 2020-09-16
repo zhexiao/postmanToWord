@@ -1,59 +1,65 @@
 package com.zhexiao.convert;
 
-import com.zhexiao.convert.utils.word.ExportWord;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import com.zhexiao.convert.entity.TableApiVal;
+import com.zhexiao.convert.utils.word.ApiWord;
+import com.zhexiao.convert.entity.ParaStyle;
+import com.zhexiao.convert.entity.Parameter;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-@SpringBootTest
+// @SpringBootTest
 class PostmanToWordApplicationTests {
 
     @Test
-    void contextLoads() {
-        ExportWord ew = new ExportWord();
-        XWPFDocument document = ew.createXWPFDocument();
-        List<List<Object>> list = new ArrayList<List<Object>>();
+    void t1() {
 
-        List<Object> tempList = new ArrayList<Object>();
-        tempList.add("姓名");
-        tempList.add("黄xx");
-        tempList.add("性别");
-        tempList.add("男");
-        tempList.add("出生日期");
-        tempList.add("2018-10-10");
-        list.add(tempList);
-        tempList = new ArrayList<Object>();
-        tempList.add("身份证号");
-        tempList.add("36073xxxxxxxxxxx");
-        list.add(tempList);
-        tempList = new ArrayList<Object>();
-        tempList.add("出生地");
-        tempList.add("江西");
-        tempList.add("名族");
-        tempList.add("汉");
-        tempList.add("婚否");
-        tempList.add("否");
-        list.add(tempList);
-        tempList = new ArrayList<Object>();
-        tempList.add("既往病史");
-        tempList.add("无");
-        list.add(tempList);
+    }
 
-        Map<String, Object> dataList = new HashMap<String, Object>();
-        dataList.put("TITLE", "个人体检表");
-        dataList.put("TABLEDATA", list);
+    @Test
+    void t2(){
+        ApiWord apiWord = new ApiWord();
+
         try {
-            ew.exportCheckWord(dataList, document, "expWordTest.docx");
-        } catch (IOException e) {
+            ParaStyle titleParaStyle = new ParaStyle().setAlign(ParagraphAlignment.CENTER).setBold(true);
+            apiWord.createParagraph("API接口文档 - 测试版", titleParaStyle);
+
+            //参数
+            ArrayList<Parameter> parameters = new ArrayList<>();
+            parameters.add(new Parameter().setKey("identity").setValue("18171202512"));
+            parameters.add(new Parameter().setKey("userName").setValue("xxxxx"));
+            parameters.add(new Parameter().setKey("snNumber").setValue("200915-ST51010"));
+
+            TableApiVal tableApiVal = new TableApiVal()
+                    .setInterfaceName("用户登录")
+                    .setInterfaceUrl("/v2/auth/login")
+                    .setInterfaceAction("用户登录并返回对应的角色")
+                    .setMethod("POST")
+                    .setCallSystem("")
+                    .setDataFormat("")
+                    .setParameters(parameters)
+                    .setReturns("JSON")
+                    .setReturnSample("成功\n" +
+                            "{\n" +
+                            "    \"code\": \"U000000\",\n" +
+                            "    \"msgCode\": \"success.id\",\n" +
+                            "    \"data\": {\n" +
+                            "        \"accountId\": \"210921381917888513\",\n}")
+                    .setCallSample("")
+                    .setExceptionScene("");
+            apiWord.createApiTable(tableApiVal);
+
+            apiWord.createParagraph("");
+            apiWord.createApiTable(tableApiVal);
+
+            apiWord.createParagraph("");
+            apiWord.createApiTable(tableApiVal);
+
+            apiWord.export("./words/" + System.currentTimeMillis() + ".docx");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("文档生成成功");
     }
 
 }

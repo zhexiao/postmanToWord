@@ -6,7 +6,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 
 /**
  *
- * 文本的样式
+ * 段落的样式
  *
  * @Auther: zhe.xiao
  * @Date: 2020/09/09
@@ -14,16 +14,11 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
  */
 @Data
 @Accessors(chain = true)
-public class TextStyle {
+public class ParaStyle {
     /**
      * 字体大小
      */
     private Integer fontSize;
-
-    /**
-     * 字体
-     */
-    private String fontFamily;
 
     /**
      * 加粗
@@ -34,9 +29,4 @@ public class TextStyle {
      * 偏移
      */
     private ParagraphAlignment align;
-
-    /**
-     * 字体的缩进
-     */
-    private Integer indentLeft;
 }
