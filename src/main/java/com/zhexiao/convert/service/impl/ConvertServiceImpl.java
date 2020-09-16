@@ -77,13 +77,26 @@ public class ConvertServiceImpl implements ConvertService {
         List<Item> items = postman.getItem();
         for (Item item : items) {
             logger.info(item.getName());
+
+            //得到接口URL
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(item.getRequest().getUrl().getHost().get(0));
+            List<String> path = item.getRequest().getUrl().getPath();
+            if(!path.isEmpty()){
+
+                path.stream().forEach(e -> {
+                    stringBuilder.append("/");
+                    stringBuilder.append(e);
+                });
+            }
+
             TableApiVal tableApiVal = new TableApiVal()
                     .setInterfaceName(item.getName())
-                    .setInterfaceUrl(item.getRequest().getUrl().getRaw())
+                    .setInterfaceUrl(stringBuilder.toString())
                     .setInterfaceAction(item.getName())
                     .setMethod(item.getRequest().getMethod())
-                    .setCallSystem("")
-                    .setDataFormat("")
+                    .setCallSystem("Android, iOS")
+                    .setDataFormat("JSON")
                     .setParameters(item.getRequest().getUrl().getQuery())
                     .setReturns("JSON")
                     .setReturnSample("")
@@ -102,6 +115,7 @@ public class ConvertServiceImpl implements ConvertService {
         String filename = postman.getInfo().getName() + "_" + System.currentTimeMillis() + ".docx";
         String visitPath = fileDest + "/" + filename;
         apiWord.export(visitPath);
+        logger.info("---------------word导出完毕--------------");
 
         //返回数据
         UploaderFileVO fileVO = new UploaderFileVO()
