@@ -1,4 +1,4 @@
-package com.zhexiao.convert.entity;
+package com.zhexiao.convert.entity.postman;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -10,7 +10,10 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Parameter {
-    private String key;
-    private String value;
+public class Info {
+    private String name;
+
+    private String schema;
+
+    private String postmanId;
 }

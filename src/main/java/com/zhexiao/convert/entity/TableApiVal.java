@@ -1,5 +1,6 @@
 package com.zhexiao.convert.entity;
 
+import com.zhexiao.convert.entity.postman.Parameter;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

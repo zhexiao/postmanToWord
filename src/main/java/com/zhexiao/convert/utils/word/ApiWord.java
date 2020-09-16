@@ -2,10 +2,16 @@ package com.zhexiao.convert.utils.word;
 
 import com.zhexiao.convert.entity.TableApiVal;
 import com.zhexiao.convert.entity.ParaStyle;
-import com.zhexiao.convert.entity.Parameter;
+import com.zhexiao.convert.entity.postman.Parameter;
 import com.zhexiao.convert.entity.TextStyle;
+import com.zhexiao.convert.service.impl.ConvertServiceImpl;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +25,9 @@ import java.util.List;
  * @date 2020-09-15 22:17
  **/
 public class ApiWord {
+
+    private static final Logger logger = LoggerFactory.getLogger(ApiWord.class);
+
 
     private XWPFDocument document = null;
 
@@ -93,7 +102,7 @@ public class ApiWord {
         setTableWidth(table, 9072);
 
         //设置每个表格里面cell的宽度
-        setCellWidth(table, new int[]{900, 6000});
+        setCellWidth(table, new int[]{1000, 5000});
 
         //设置列的值
         setApiTableTitle(table);
@@ -143,13 +152,17 @@ public class ApiWord {
                     break;
                 case 6:
                     List<Parameter> parameters = tableVal.getParameters();
-                    for (int i1 = 0; i1 < parameters.size(); i1++) {
-                        Parameter parameter = parameters.get(i1);
-                        run.setText(parameter.getKey() +"      " + parameter.getValue());
+                    if(parameters!=null && parameters.size() > 0){
+                        for (int i1 = 0; i1 < parameters.size(); i1++) {
+                            Parameter parameter = parameters.get(i1);
+                            run.setText(parameter.getKey() +"      " + parameter.getValue());
 
-                        if(i1 < parameters.size()-1){
-                            run.addBreak(BreakType.TEXT_WRAPPING);
+                            if(i1 < parameters.size()-1){
+                                run.addBreak(BreakType.TEXT_WRAPPING);
+                            }
                         }
+                    }else{
+                        run.setText("");
                     }
 
                     break;
@@ -295,7 +308,7 @@ public class ApiWord {
         CTTblPr tblPr = ctTbl.getTblPr();
         CTTblWidth tblW = tblPr.getTblW();
         tblW.setW(new BigInteger("" + width));
-        tblW.setType(STTblWidth.DXA);
+        tblW.setType(STTblWidth.AUTO);
     }
 
     /**

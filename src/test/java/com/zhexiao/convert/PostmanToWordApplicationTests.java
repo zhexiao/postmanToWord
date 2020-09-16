@@ -1,9 +1,14 @@
 package com.zhexiao.convert;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zhexiao.convert.entity.TableApiVal;
+import com.zhexiao.convert.entity.postman.Info;
+import com.zhexiao.convert.entity.postman.Postman;
+import com.zhexiao.convert.utils.json.JsonUtils;
 import com.zhexiao.convert.utils.word.ApiWord;
 import com.zhexiao.convert.entity.ParaStyle;
-import com.zhexiao.convert.entity.Parameter;
+import com.zhexiao.convert.entity.postman.Parameter;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +19,20 @@ class PostmanToWordApplicationTests {
 
     @Test
     void t1() {
+        JsonUtils jsonUtil = new JsonUtils();
+        try {
+            String str = jsonUtil.read("3DP.postman_collection.json");
+            JSONObject jsonObject = JSON.parseObject(str);
+            Postman postman = JSON.toJavaObject(jsonObject, Postman.class);
+            System.out.println(postman.toString());
 
+            JSONObject info = jsonObject.getJSONObject("info");
+
+            Info infoObj = JSON.toJavaObject(info, Info.class);
+            System.out.println(infoObj.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
