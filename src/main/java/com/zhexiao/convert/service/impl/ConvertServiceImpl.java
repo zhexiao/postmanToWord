@@ -50,10 +50,11 @@ public class ConvertServiceImpl implements ConvertService {
 
         //生成word
         ApiWord apiWord = new ApiWord();
-        ParaStyle titleParaStyle = new ParaStyle().setAlign(ParagraphAlignment.CENTER).setBold(true);
+        ParaStyle titleParaStyle = new ParaStyle().setAlign(ParagraphAlignment.CENTER).setBold(true).setFontSize(18);
 
         //标题
         apiWord.createParagraph("API接口文档 - "+postman.getInfo().getName(), titleParaStyle);
+        apiWord.createParagraph("");
 
         //表格
         List<Item> items = postman.getItem();

@@ -58,12 +58,7 @@ class PostmanToWordApplicationTests {
                     .setDataFormat("")
                     .setParameters(parameters)
                     .setReturns("JSON")
-                    .setReturnSample("成功\n" +
-                            "{\n" +
-                            "    \"code\": \"U000000\",\n" +
-                            "    \"msgCode\": \"success.id\",\n" +
-                            "    \"data\": {\n" +
-                            "        \"accountId\": \"210921381917888513\",\n}")
+                    .setReturnSample("")
                     .setCallSample("")
                     .setExceptionScene("");
             apiWord.createApiTable(tableApiVal);
@@ -79,5 +74,4 @@ class PostmanToWordApplicationTests {
             e.printStackTrace();
         }
     }
-
 }

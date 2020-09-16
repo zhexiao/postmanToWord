@@ -4,14 +4,10 @@ import com.zhexiao.convert.entity.TableApiVal;
 import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.postman.Parameter;
 import com.zhexiao.convert.entity.TextStyle;
-import com.zhexiao.convert.service.impl.ConvertServiceImpl;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -102,7 +98,7 @@ public class ApiWord {
         setTableWidth(table, 9072);
 
         //设置每个表格里面cell的宽度
-        setCellWidth(table, new int[]{1000, 5000});
+        setCellWidth(table, new int[]{800, 5000});
 
         //设置列的值
         setApiTableTitle(table);
@@ -180,8 +176,6 @@ public class ApiWord {
                     break;
             }
         }
-
-
     }
 
     /**
@@ -213,7 +207,6 @@ public class ApiWord {
         //设置
         setColText(table, 0, strings, ts1);
     }
-
 
     /**
      * 设置第 col 列的值
@@ -304,11 +297,17 @@ public class ApiWord {
     private void setTableWidth(XWPFTable table, Integer width) {
         CTTbl ctTbl = table.getCTTbl();
 
-        //设置宽度
+        //table属性
         CTTblPr tblPr = ctTbl.getTblPr();
+
+        //设置表格中cell的长度不随着文字变化而变化
+        CTTblLayoutType layoutType = tblPr.addNewTblLayout();
+        layoutType.setType(STTblLayoutType.FIXED);
+
+        //设置宽度
         CTTblWidth tblW = tblPr.getTblW();
         tblW.setW(new BigInteger("" + width));
-        tblW.setType(STTblWidth.AUTO);
+        tblW.setType(STTblWidth.DXA);
     }
 
     /**
