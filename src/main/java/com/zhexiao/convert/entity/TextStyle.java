@@ -26,6 +26,12 @@ public class TextStyle {
     private String fontFamily;
 
     /**
+     * 字体颜色
+     * ex：999999
+     */
+    private String fontColor;
+
+    /**
      * 加粗
      */
     private Boolean bold;

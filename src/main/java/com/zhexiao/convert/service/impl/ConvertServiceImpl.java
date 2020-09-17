@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.zhexiao.convert.base.Result;
 import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.TableApiVal;
+import com.zhexiao.convert.entity.dto.TableApiValDTO;
 import com.zhexiao.convert.entity.postman.Item;
 import com.zhexiao.convert.entity.postman.Postman;
 import com.zhexiao.convert.entity.vo.UploaderFileVO;
@@ -62,7 +63,7 @@ public class ConvertServiceImpl implements ConvertService {
      * @throws Exception
      */
     @Override
-    public Result<UploaderFileVO> writeWord(MultipartFile file) throws Exception {
+    public Result<UploaderFileVO> writeWord(MultipartFile file, TableApiValDTO tableApiValDTO) throws Exception {
         Postman postman = getData(file);
 
         //生成word
@@ -83,7 +84,6 @@ public class ConvertServiceImpl implements ConvertService {
             stringBuilder.append(item.getRequest().getUrl().getHost().get(0));
             List<String> path = item.getRequest().getUrl().getPath();
             if(!path.isEmpty()){
-
                 path.stream().forEach(e -> {
                     stringBuilder.append("/");
                     stringBuilder.append(e);
@@ -95,10 +95,10 @@ public class ConvertServiceImpl implements ConvertService {
                     .setInterfaceUrl(stringBuilder.toString())
                     .setInterfaceAction(item.getName())
                     .setMethod(item.getRequest().getMethod())
-                    .setCallSystem("Android, iOS")
-                    .setDataFormat("JSON")
+                    .setCallSystem(tableApiValDTO.getCallSystem())
+                    .setDataFormat(tableApiValDTO.getDataFormat())
                     .setParameters(item.getRequest().getUrl().getQuery())
-                    .setReturns("JSON")
+                    .setReturns(tableApiValDTO.getReturns())
                     .setReturnSample("")
                     .setCallSample(item.getRequest().getUrl().getRaw())
                     .setExceptionScene("");

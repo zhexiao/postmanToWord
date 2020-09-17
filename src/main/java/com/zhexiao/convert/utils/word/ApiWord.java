@@ -4,6 +4,7 @@ import com.zhexiao.convert.entity.TableApiVal;
 import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.postman.Parameter;
 import com.zhexiao.convert.entity.TextStyle;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 import org.slf4j.Logger;
@@ -106,6 +107,36 @@ public class ApiWord {
     }
 
     /**
+     * 设置api文档的第一列命名
+     *
+     * @param table
+     */
+    private void setApiTableTitle(XWPFTable table) {
+        //设置第一列的名称
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("接口名称");
+        strings.add("接口URL");
+        strings.add("接口功能");
+        strings.add("请求方式");
+        strings.add("调用系统");
+        strings.add("数据格式");
+        strings.add("参数");
+        strings.add("返回值");
+        strings.add("返回示例");
+        strings.add("调用举例");
+        strings.add("异常场景");
+
+        //样式
+        TextStyle ts1 = new TextStyle()
+                .setAlign(ParagraphAlignment.CENTER)
+                .setFontSize(9)
+                .setFontFamily("Microsoft YaHei");
+
+        //设置
+        setColText(table, 0, strings, ts1);
+    }
+
+    /**
      * 设置api文档第二列的值
      * @param table
      * @param tableVal
@@ -115,6 +146,7 @@ public class ApiWord {
                 .setAlign(ParagraphAlignment.LEFT)
                 .setIndentLeft(100)
                 .setFontSize(9)
+                .setFontColor("555555")
                 .setFontFamily("Microsoft YaHei");
 
         List<XWPFTableRow> rows = table.getRows();
@@ -151,7 +183,7 @@ public class ApiWord {
                     if(parameters!=null && parameters.size() > 0){
                         for (int i1 = 0; i1 < parameters.size(); i1++) {
                             Parameter parameter = parameters.get(i1);
-                            run.setText(parameter.getKey() +"      " + parameter.getValue());
+                            run.setText(parameter.getKey() +"  [" + parameter.getValue() +"]");
 
                             if(i1 < parameters.size()-1){
                                 run.addBreak(BreakType.TEXT_WRAPPING);
@@ -176,36 +208,6 @@ public class ApiWord {
                     break;
             }
         }
-    }
-
-    /**
-     * 设置api文档的第一列命名
-     *
-     * @param table
-     */
-    private void setApiTableTitle(XWPFTable table) {
-        //设置第一列的名称
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("接口名称");
-        strings.add("接口URL");
-        strings.add("接口功能");
-        strings.add("请求方式");
-        strings.add("调用系统");
-        strings.add("数据格式");
-        strings.add("参数");
-        strings.add("返回值");
-        strings.add("返回示例");
-        strings.add("调用举例");
-        strings.add("异常场景");
-
-        //样式
-        TextStyle ts1 = new TextStyle()
-                .setAlign(ParagraphAlignment.CENTER)
-                .setFontSize(9)
-                .setFontFamily("Microsoft YaHei");
-
-        //设置
-        setColText(table, 0, strings, ts1);
     }
 
     /**
@@ -263,6 +265,10 @@ public class ApiWord {
 
         if (!"".equals(textStyle.getFontFamily()) && textStyle.getFontFamily() != null) {
             run.setFontFamily(textStyle.getFontFamily());
+        }
+
+        if (!"".equals(textStyle.getFontColor()) && textStyle.getFontColor() != null) {
+            run.setColor(textStyle.getFontColor());
         }
     }
 
