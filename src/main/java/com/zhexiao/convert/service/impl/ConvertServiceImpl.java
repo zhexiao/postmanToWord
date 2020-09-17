@@ -51,9 +51,9 @@ public class ConvertServiceImpl implements ConvertService {
      * @return
      */
     @Override
-    public Result<Postman> upload(MultipartFile file) {
+    public Result upload(MultipartFile file) {
         Postman postman = getData(file);
-        return Result.success(postman);
+        return Result.success("ok");
     }
 
     /**
