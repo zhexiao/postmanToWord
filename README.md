@@ -1,7 +1,7 @@
 # postmanToWord
 很懒，不喜欢写接口文档。现在开发用的是postman调接口，所以就开发这个工具方便大家快速的把postman导出的json转成标准的接口文档。  :laughing:  :laughing: 
 
-[![Build Status](https://travis-ci.org/zhexiao/office-parser.svg?branch=master)](https://travis-ci.org/zhexiao/office-parser)
+[![Build Status](https://travis-ci.org/zhexiao/postmanToWord.svg?branch=master)](https://travis-ci.org/zhexiao/postmanToWord)
 [![codecov](https://codecov.io/gh/zhexiao/office-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/zhexiao/office-parser)
 ![java](https://img.shields.io/badge/java-1.8.0_251-blue)
 
