@@ -4,6 +4,7 @@ import com.zhexiao.convert.entity.TableApiVal;
 import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.postman.Parameter;
 import com.zhexiao.convert.entity.TextStyle;
+import com.zhexiao.convert.entity.postman.Response;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -198,7 +200,22 @@ public class ApiWord {
                     run.setText(tableVal.getReturns());
                     break;
                 case 8:
-                    run.setText(tableVal.getReturnSample());
+                    if(tableVal.getReturnSample() != null && (!tableVal.getReturnSample().isEmpty())){
+                        List<Response> returnSample = tableVal.getReturnSample();
+                        for (Response response : returnSample) {
+                            run.setText(response.getName());
+                            run.addBreak();
+
+                            String responseBody = response.getBody();
+                            List<String> respStrList = Arrays.asList(responseBody.split("\n"));
+                            for (String s : respStrList) {
+                                run.setText(s);
+                                run.addBreak();
+                            }
+
+                            run.addBreak();
+                        }
+                    }
                     break;
                 case 9:
                     run.setText(tableVal.getCallSample());

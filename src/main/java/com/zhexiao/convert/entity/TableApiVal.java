@@ -1,6 +1,7 @@
 package com.zhexiao.convert.entity;
 
 import com.zhexiao.convert.entity.postman.Parameter;
+import com.zhexiao.convert.entity.postman.Response;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -59,7 +60,7 @@ public class TableApiVal implements TableVal {
     /**
      * 返回示例
      */
-    private String returnSample;
+    private List<Response> returnSample;
 
     /**
      * 调用举例

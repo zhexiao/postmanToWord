@@ -99,11 +99,11 @@ public class ConvertServiceImpl implements ConvertService {
                     .setDataFormat(tableApiValDTO.getDataFormat())
                     .setParameters(item.getRequest().getUrl().getQuery())
                     .setReturns(tableApiValDTO.getReturns())
-                    .setReturnSample("")
+                    .setReturnSample(item.getResponse())
                     .setCallSample(item.getRequest().getUrl().getRaw())
                     .setExceptionScene("");
 
-            logger.info(item.toString());
+            // logger.info(item.toString());
             //根据值创建
             apiWord.createApiTable(tableApiVal);
             apiWord.createParagraph("");

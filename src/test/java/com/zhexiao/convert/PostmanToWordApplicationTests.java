@@ -13,6 +13,8 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 // @SpringBootTest
 class PostmanToWordApplicationTests {
@@ -58,7 +60,7 @@ class PostmanToWordApplicationTests {
                     .setDataFormat("")
                     .setParameters(parameters)
                     .setReturns("JSON")
-                    .setReturnSample("")
+                    .setReturnSample(null)
                     .setCallSample("")
                     .setExceptionScene("");
             apiWord.createApiTable(tableApiVal);
@@ -72,6 +74,15 @@ class PostmanToWordApplicationTests {
             apiWord.export("./words/" + System.currentTimeMillis() + ".docx");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    void t3(){
+        String resap = "{\n    \"code\": 400,\n    \"message\": null,\n    \"data\": null\n}";
+        List<String> strings = Arrays.asList(resap.split("\n"));
+        for (String string : strings) {
+            System.out.println(string);
         }
     }
 }
