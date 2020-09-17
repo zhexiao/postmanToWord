@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/zhexiao/office-parser.svg?branch=master)](https://travis-ci.org/zhexiao/office-parser)
 [![codecov](https://codecov.io/gh/zhexiao/office-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/zhexiao/office-parser)
-![java](https://img.shields.io/badge/java->%3D1.13-blue)
+![java](https://img.shields.io/badge/java-8-blue)
 
 ## postman
 Postman导出Collection v2.1类型的JSON文件转为WORD标准接口文档
