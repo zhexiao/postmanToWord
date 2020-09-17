@@ -36,3 +36,12 @@ Postman导出Collection v2.1类型的JSON文件转为WORD标准接口文档
 7. 打开visitPath链接地址，会下载一个接口文档word
 
 ![Image text](./guide/postman/7.png)
+
+## 核心自定义配置
+application.yml
+```yaml
+app:
+  fileDest: "F:/workspace/postmanToWord/uploads"
+  filePathRoute: "/uploads/" # 上传的访问地址
+  fileVisitHost: "http://localhost:8888" # 上传的文件地址访问主机名
+```
