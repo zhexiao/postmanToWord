@@ -1,5 +1,6 @@
 package com.zhexiao.convert.utils.json;
 
+import com.zhexiao.convert.exceptions.ApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -62,6 +63,7 @@ public class JsonUtils {
             res = read(fileInputStream);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new ApiException(e.getMessage());
         }finally {
             if(fileInputStream != null){
                 try {
