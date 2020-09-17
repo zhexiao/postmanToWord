@@ -35,7 +35,7 @@ public class ConvertController {
      * @return
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Result upload(MultipartFile file){
+    public Result<Postman> upload(MultipartFile file){
         return convertService.upload(file);
     }
 
