@@ -1,5 +1,5 @@
 # postmanToWord
-很懒，不喜欢写接口文档。现在开发用的是postman调接口，所以就开发这个工具方便大家快速的把postman的json转成接口文档。  :laughing:  :laughing: 
+很懒，不喜欢写接口文档。现在开发用的是postman调接口，所以就开发这个工具方便大家快速的把postman导出的json转成标准的接口文档。  :laughing:  :laughing: 
 
 
 ## postman
