@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.zhexiao</groupId>
     <artifactId>convert</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>v1</version>
     <name>postmanToWord</name>
     <description>Postman Json To Word</description>
 

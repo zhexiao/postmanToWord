@@ -1,0 +1,20 @@
+#
+# docker build -t 3dp -f ./docker/Dockerfile .
+#
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: json-file
+  options:
+    max-size: '5m'
+    max-file: '10'
+
+services:
+  app:
+    image: ptw:latest
+    container_name: postmanToWord
+    ports:
+      - 8888:8888
+    restart: always
+    logging: *default-logging
