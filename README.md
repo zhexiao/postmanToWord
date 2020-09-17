@@ -1,4 +1,6 @@
 # postmanToWord
+很懒，不喜欢写接口文档。现在开发用的是postman调接口，所以就开发这个工具方便大家快速的把postman导出的json转成标准的接口文档。  :laughing:  :laughing: 
+
 
 ## postman
 Postman导出Collection v2.1类型的JSON文件转为WORD标准接口文档
