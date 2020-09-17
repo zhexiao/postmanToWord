@@ -11,19 +11,20 @@ import com.zhexiao.convert.entity.ParaStyle;
 import com.zhexiao.convert.entity.postman.Parameter;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// @SpringBootTest
+@SpringBootTest
 class PostmanToWordApplicationTests {
 
     @Test
     void t1() {
         JsonUtils jsonUtil = new JsonUtils();
         try {
-            String str = jsonUtil.read("3DP.postman_collection.json");
+            String str = jsonUtil.read("./guide/postman/demo.json");
             JSONObject jsonObject = JSON.parseObject(str);
             Postman postman = JSON.toJavaObject(jsonObject, Postman.class);
             System.out.println(postman.toString());
@@ -71,7 +72,6 @@ class PostmanToWordApplicationTests {
             apiWord.createParagraph("");
             apiWord.createApiTable(tableApiVal);
 
-            apiWord.export("./words/" + System.currentTimeMillis() + ".docx");
         } catch (Exception e) {
             e.printStackTrace();
         }

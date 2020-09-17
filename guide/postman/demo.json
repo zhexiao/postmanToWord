@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "d47c66f2-eadf-469e-9323-79713ec33721",
+		"name": "postmanToWord",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "上传文件",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/zhe.xiao/Desktop/3DP.postman_collection.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ptw}}/upload?name=zhe",
+					"host": [
+						"{{ptw}}"
+					],
+					"path": [
+						"upload"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "zhe"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "成功",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/zhe.xiao/Desktop/3DP.postman_collection1.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ptw}}/upload",
+							"host": [
+								"{{ptw}}"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 17 Sep 2020 02:52:35 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"ok\",\n    \"data\": \"ok\"\n}"
+				}
+			]
+		},
+		{
+			"name": "生成word",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/zhe.xiao/Desktop/postmanToWord.postman_collection.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ptw}}/convert?callSystem=Android, IOS&dataFormat=JSON&returns=JSON",
+					"host": [
+						"{{ptw}}"
+					],
+					"path": [
+						"convert"
+					],
+					"query": [
+						{
+							"key": "callSystem",
+							"value": "Android, IOS"
+						},
+						{
+							"key": "dataFormat",
+							"value": "JSON"
+						},
+						{
+							"key": "returns",
+							"value": "JSON"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "失败",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ptw}}/convert?callSystem=Android, IOS&dataFormat=JSON&returns=JSON",
+							"host": [
+								"{{ptw}}"
+							],
+							"path": [
+								"convert"
+							],
+							"query": [
+								{
+									"key": "callSystem",
+									"value": "Android, IOS"
+								},
+								{
+									"key": "dataFormat",
+									"value": "JSON"
+								},
+								{
+									"key": "returns",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 17 Sep 2020 02:00:36 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"message\": null,\n    \"data\": null\n}"
+				},
+				{
+					"name": "成功",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/zhe.xiao/Desktop/3DP.postman_collection.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ptw}}/convert?callSystem=Android, IOS&dataFormat=JSON&returns=JSON",
+							"host": [
+								"{{ptw}}"
+							],
+							"path": [
+								"convert"
+							],
+							"query": [
+								{
+									"key": "callSystem",
+									"value": "Android, IOS"
+								},
+								{
+									"key": "dataFormat",
+									"value": "JSON"
+								},
+								{
+									"key": "returns",
+									"value": "JSON"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 17 Sep 2020 01:52:34 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"ok\",\n    \"data\": {\n        \"originFilename\": \"3DP.postman_collection.json\",\n        \"filename\": \"3DP_1600307554595.docx\",\n        \"dest\": \"F:/workspace/postmanToWord/uploads\",\n        \"fullpath\": \"F:/workspace/postmanToWord/uploads/3DP_1600307554595.docx\",\n        \"visitPath\": \"http://localhost:8888/uploads/3DP_1600307554595.docx\",\n        \"createDatetime\": \"2020-09-17 09:52:34\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
