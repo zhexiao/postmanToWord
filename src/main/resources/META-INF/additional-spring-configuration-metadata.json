@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "app.file-dest",
+      "type": "java.lang.String",
+      "description": "Description for app.file-dest."
+    },
+    {
+      "name": "app.file-path-route",
+      "type": "java.lang.String",
+      "description": "Description for app.file-path-route."
+    },
+    {
+      "name": "app.file-visit-host",
+      "type": "java.lang.String",
+      "description": "Description for app.file-visit-host."
+    }
+  ] }

@@ -24,9 +24,6 @@ public class UploaderFileVO {
     //目的地
     private String dest;
 
-    //全局路径
-    private String fullpath;
-
     //保存到数据库的数据
     private String visitPath;
 

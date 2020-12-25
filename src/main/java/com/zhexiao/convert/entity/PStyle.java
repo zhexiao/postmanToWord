@@ -14,7 +14,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
  */
 @Data
 @Accessors(chain = true)
-public class ParaStyle {
+public class PStyle {
     /**
      * 字体大小
      */

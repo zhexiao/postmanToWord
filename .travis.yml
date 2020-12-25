@@ -4,6 +4,8 @@ language:
 jdk:
   - openjdk8
 
+before_
+
 script: "mvn cobertura:cobertura"
 
 after_success:

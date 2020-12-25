@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * 表数据
  *
- * @Auther: zhe.xiao
- * @Date: 2020/09/16
- * @Description
+ * @author zhexiao
+ * @date 2020-09-15 22:17
+ * @description
  */
 @Data
 @Accessors(chain = true)
-public class TableApiVal implements TableVal {
+public class TableContext {
     /**
      * 接口名称
      */

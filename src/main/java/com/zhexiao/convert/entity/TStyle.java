@@ -14,7 +14,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
  */
 @Data
 @Accessors(chain = true)
-public class TextStyle {
+public class TStyle {
     /**
      * 字体大小
      */

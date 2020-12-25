@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class TableApiValDTO {
+public class ConvertDTO {
     /**
      * 调用系统
      */

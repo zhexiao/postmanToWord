@@ -5,8 +5,8 @@ import lombok.Data;
 /**
  * 返回类
  *
- * @author: zhexiao
- * @date: 2020-07-22
+ * @author zhexiao
+ * @date  2020-07-22
  **/
 @Data
 public class Result<T> {
@@ -28,7 +28,7 @@ public class Result<T> {
      * @return
      */
     public static <T> Result<T> success(T data) {
-        return new Result<T>(200, "ok", data);
+        return new Result<>(200, "ok", data);
     }
 
     /**
@@ -39,6 +39,6 @@ public class Result<T> {
      * @return
      */
     public static <T> Result<T> failed(String message) {
-        return new Result<T>(400, message, null);
+        return new Result<>(400, message, null);
     }
 }
