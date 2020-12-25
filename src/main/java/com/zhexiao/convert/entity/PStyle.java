@@ -1,5 +1,6 @@
 package com.zhexiao.convert.entity;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -12,6 +13,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
  * @Date: 2020/09/09
  * @Description
  */
+@ApiModel(description = "段落样式")
 @Data
 @Accessors(chain = true)
 public class PStyle {
